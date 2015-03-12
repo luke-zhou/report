@@ -9,8 +9,7 @@
   display: table;
     border-collapse: separate;
     border-spacing: 2px;
-    border-color: gray;
-    border: 1px solid;
+    border: 1px solid black;
 }
 
 .mainTable tr{
@@ -18,10 +17,14 @@
 }
 
 .mainTable th{
+  display: table-cell
   width:150px;
+  border: 1px solid black;
 }
 
 .mainTable td{
+  display: tablec-cell;
   width:150px;
   text-align: center;
+  border: 1px solid black;
 }
