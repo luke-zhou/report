@@ -1,5 +1,10 @@
 /* app css stylesheet */
-
+.root{
+  margin: auto;
+  position: relative;
+  top: 150px;
+  width: 750px;
+}
 .mainTable{
   display: table;
     border-collapse: separate;
@@ -18,5 +23,5 @@
 
 .mainTable td{
   width:150px;
-  text-align: left;
+  text-align: center;
 }
