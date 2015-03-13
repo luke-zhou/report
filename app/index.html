@@ -19,18 +19,14 @@
   <div class="root" ng-controller="reportController as report">
     <table class="mainTable">
       <tr>
-        <th>name</th>
-        <th>video</th>
-        <th>cognitive</th>
-        <th>behavior</th>
-        <th>overall</th>
+		<th>Name</th>
+        <th ng-repeat="key in report.keys">{{key}}</th>
+		<th>Overall</th>
       </tr>
       <tr ng-repeat="row in report.rows">
-        <td>{{row.name}}</td>
-        <td>{{row.video}}</td>
-        <td>{{row.cognitive}}</td>
-        <td>{{row.behavior}}</td>
-        <td>{{row.overall}}</td>
+		<td>{{row.name}}</td>
+        <td ng-repeat="key in report.keys">{{row.scores[key].overall}}</td>
+		<td>{{row.overall}}</td>
       </tr>
     </table>
   </div>
