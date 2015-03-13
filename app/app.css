@@ -5,24 +5,24 @@
   top: 150px;
   width: 750px;
 }
-.mainTable{
+.table{
   display: table;
     border-collapse: separate;
     border-spacing: 2px;
     border: 1px solid black;
 }
 
-.mainTable tr{
+.table tr{
   height:35px;
 }
 
-.mainTable th{
+.table th{
   display: table-cell
   width:150px;
   border: 1px solid black;
 }
 
-.mainTable td{
+.table td{
   display: tablec-cell;
   width:150px;
   text-align: center;

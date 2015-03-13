@@ -17,14 +17,25 @@
 </head>
 <body>
   <div class="root" ng-controller="reportController as report">
-    <table class="mainTable">
+    <table class="table" ng-show="report.selectMain">
       <tr>
 		<th>Name</th>
         <th ng-repeat="key in report.keys">{{key}}</th>
 		<th>Overall</th>
       </tr>
       <tr ng-repeat="row in report.rows">
-		<td>{{row.name}}</td>
+		<td ng-click="report.selectParticipant(row.id)">{{row.name}}</td>
+        <td ng-repeat="key in report.keys">{{row.scores[key].overall}}</td>
+		<td>{{row.overall}}</td>
+      </tr>
+    </table>
+	<table class="table" ng-show="report.selectParticipantDetail">
+      <tr>
+		<th>Name</th>
+        <th ng-repeat="key in report.keys">{{key}}</th>
+      </tr>
+      <tr ng-repeat="row in report.rows">
+		<td ng-click="report.selectParticipant(row.id)">{{row.name}}</td>
         <td ng-repeat="key in report.keys">{{row.scores[key].overall}}</td>
 		<td>{{row.overall}}</td>
       </tr>

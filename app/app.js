@@ -7,16 +7,31 @@
 	app.controller('reportController', function(){
 		this.rows = participants;
 		this.keys = [];
+		this.selectMain=true;
+		this.selectParticipantDetail=false;
+		
 		for (var key in this.rows[0].scores) {
 		  if (this.rows[0].scores.hasOwnProperty(key)) {
 			this.keys.push(key);
-			console.log(key);
 		  }
+		};
+		
+		this.selectParticipant = function(participantId){
+			console.log(participantId);
+			this.selectMain=false;
+			this.selectParticipantDetail=true;
+		};
+		
+		this.getParticipant = function(participantId){
+			for (var participant in rows){
+				if (participant.id==participantId) return participant;
+			}
 		}
-	})
+	});
 
 	var participants=[
 	{
+		id: 1,
 		name: 'candidate one',
 		scores:{
 			video: {
@@ -41,6 +56,7 @@
 		overall: 65
 	},
 	{
+		id: 2,
 		name: 'candidate two',
 		scores:{
 			video: {
@@ -65,6 +81,7 @@
 		overall: 79
 	},
 	{
+		id: 3,
 		name: 'candidate three',
 		scores:{
 			video: {
@@ -88,6 +105,6 @@
 		},
 		overall: 60
 	}
-	]
+	];
 
 })();
