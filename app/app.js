@@ -7,23 +7,32 @@
 	app.controller('reportController', function(){
 		this.rows = participants;
 		this.keys = [];
-		this.selectMain=true;
-		this.selectParticipantDetail=false;
+		this.scoreCompetency =[];
+		this.selectMainTable=true;
+		this.selectParticipantDetailTable=false;
 		
 		for (var key in this.rows[0].scores) {
 		  if (this.rows[0].scores.hasOwnProperty(key)) {
 			this.keys.push(key);
+			var competencySet=[];
+			for (var competency in this.rows[0].scores[key]){
+				competencySet.push(competency);
+			}
+			this.scoreCompetency[key]=competencySet;
 		  }
 		};
 		
 		this.selectParticipant = function(participantId){
 			console.log(participantId);
-			this.selectMain=false;
-			this.selectParticipantDetail=true;
+			this.selectMainTable=false;
+			this.selectParticipantDetailTable=true;
+			this.selectParticipant = getParticipant(participantId);
 		};
 		
-		this.getParticipant = function(participantId){
-			for (var participant in rows){
+		var getParticipant = function(participantId){
+			console.log("participants:"+participants);
+			for (var index in participants){
+				var participant = participants[index];
 				if (participant.id==participantId) return participant;
 			}
 		}

@@ -17,7 +17,7 @@
 </head>
 <body>
   <div class="root" ng-controller="reportController as report">
-    <table class="table" ng-show="report.selectMain">
+    <table class="table" ng-show="report.selectMainTable">
       <tr>
 		<th>Name</th>
         <th ng-repeat="key in report.keys">{{key}}</th>
@@ -29,15 +29,26 @@
 		<td>{{row.overall}}</td>
       </tr>
     </table>
-	<table class="table" ng-show="report.selectParticipantDetail">
+	<table class="table" ng-show="report.selectParticipantDetailTable">
       <tr>
-		<th>Name</th>
-        <th ng-repeat="key in report.keys">{{key}}</th>
-      </tr>
-      <tr ng-repeat="row in report.rows">
-		<td ng-click="report.selectParticipant(row.id)">{{row.name}}</td>
-        <td ng-repeat="key in report.keys">{{row.scores[key].overall}}</td>
-		<td>{{row.overall}}</td>
+        <td>
+          <table>
+            <tr><td>Name</td></tr>
+            <tr><td>{{report.selectParticipant.name}}</td></tr>
+          </table>
+        </td>
+         <td ng-repeat="key in report.keys">
+          <table>
+            <tr>
+              <th>{{key}}</th>
+              <th>{{report.selectParticipant.scores[key].overall}}</th>
+            </tr>
+            <tr ng-repeat="competency in report.scoreCompetency[key]">
+              <th>{{competency}}</th>
+              <th>{{report.selectParticipant.scores[key][competency]}}</th>
+            </tr>
+          </table>
+        </td>
       </tr>
     </table>
   </div>
