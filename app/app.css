@@ -5,26 +5,51 @@
   top: 150px;
   width: 750px;
 }
-.table{
+.mainTable{
   display: table;
     border-collapse: separate;
     border-spacing: 2px;
     border: 1px solid black;
 }
 
-.table tr{
+.mainTable tr{
   height:35px;
 }
 
-.table th{
+.mainTable th{
   display: table-cell
   width:150px;
   border: 1px solid black;
 }
 
-.table td{
+.mainTable td{
   display: tablec-cell;
   width:150px;
   text-align: center;
   border: 1px solid black;
+}
+
+.participantTable{
+  display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border: 1px solid black;
+}
+
+.participantTable tr{
+  height:35px;
+}
+
+.participantTable th{
+  display: table-cell
+  width:150px;
+  border: 1px solid black;
+}
+
+.participantTable td{
+  display: tablec-cell;
+  width:150px;
+  text-align: center;
+  border: 1px solid black;
+  vertical-align:top;
 }

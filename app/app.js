@@ -47,6 +47,7 @@
 				question1:27,
 				question2:56,
 				question3:30,
+				question4:35,
 				overall:34
 			},
 			cognitive: {
@@ -59,6 +60,8 @@
 				competency1:20,
 				competency2:98,
 				competency3:10,
+				competency4:15,
+				competency5:50,
 				overall:85
 			}
 		},
@@ -72,6 +75,7 @@
 				question1:15,
 				question2:86,
 				question3:40,
+				question4:45,
 				overall:43
 			},
 			cognitive: {
@@ -84,6 +88,8 @@
 				competency1:86,
 				competency2:88,
 				competency3:89,
+				competency4:94,
+				competency5:45,
 				overall:87
 			},
 		},
@@ -97,6 +103,7 @@
 				question1:65,
 				question2:99,
 				question3:99,
+				question4:90,
 				overall:98
 			},
 			cognitive: {
@@ -109,6 +116,8 @@
 				competency1:84,
 				competency2:98,
 				competency3:62,
+				competency4:81,
+				competency5:32,
 				overall:76
 			},
 		},

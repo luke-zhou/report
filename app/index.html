@@ -17,7 +17,7 @@
 </head>
 <body>
   <div class="root" ng-controller="reportController as report">
-    <table class="table" ng-show="report.selectMainTable">
+    <table class="mainTable" ng-show="report.selectMainTable">
       <tr>
 		<th>Name</th>
         <th ng-repeat="key in report.keys">{{key}}</th>
@@ -29,9 +29,9 @@
 		<td>{{row.overall}}</td>
       </tr>
     </table>
-	<table class="table" ng-show="report.selectParticipantDetailTable">
+	<table class="participantTable" ng-show="report.selectParticipantDetailTable">
       <tr>
-        <td style ="vertical-align:top">
+        <td>
           <table>
             <tr><td>Name</td></tr>
             <tr><td>{{report.selectParticipant.name}}</td></tr>
@@ -44,8 +44,8 @@
               <th>{{report.selectParticipant.scores[key].overall}}</th>
             </tr>
             <tr ng-repeat="competency in report.scoreCompetency[key]">
-              <th>{{competency}}</th>
-              <th>{{report.selectParticipant.scores[key][competency]}}</th>
+              <td>{{competency}}</td>
+              <td>{{report.selectParticipant.scores[key][competency]}}</td>
             </tr>
           </table>
         </td>
