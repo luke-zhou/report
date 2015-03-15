@@ -33,7 +33,6 @@
   display: table;
     border-collapse: separate;
     border-spacing: 2px;
-    border: 1px solid black;
 }
 
 .participantTable tr{
@@ -45,11 +44,19 @@
   width:150px;
   border: 1px solid black;
 }
-
-.participantTable td{
+.participantTable td td{
   display: tablec-cell;
   width:150px;
   text-align: center;
   border: 1px solid black;
+  vertical-align:middle;
+}
+.participantTable td{
+  display: tablec-cell;
+  width:150px;
+  text-align: center;
   vertical-align:top;
 }
+
+
+

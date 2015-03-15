@@ -33,15 +33,15 @@
       <tr>
         <td>
           <table>
-            <tr><td>Name</td></tr>
+            <tr><th >Name</th></tr>
             <tr><td>{{report.selectParticipant.name}}</td></tr>
           </table>
         </td>
          <td ng-repeat="key in report.keys">
           <table>
             <tr>
-              <th>{{key}}</th>
-              <th>{{report.selectParticipant.scores[key].overall}}</th>
+              <th style="width:75%">{{key}}</th>
+              <th style="width:25%">{{report.selectParticipant.scores[key].overall}}</th>
             </tr>
             <tr ng-repeat="competency in report.scoreCompetency[key]">
               <td>{{competency}}</td>
