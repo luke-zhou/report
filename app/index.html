@@ -16,36 +16,36 @@
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
-  <div class="root" ng-controller="reportController as report">
-    <table class="mainTable" ng-show="report.selectMainTable">
+  <div class="root" ng-controller="tableController as table">
+    <table class="mainTable" ng-show="table.selectMainTable" ng-controller="reportController as report">
       <tr>
 		<th>Name</th>
         <th ng-repeat="key in report.keys">{{key}}</th>
 		<th>Overall</th>
       </tr>
       <tr ng-repeat="row in report.rows">
-		<td ng-click="report.selectParticipant(row.id)">{{row.name}}</td>
+		<td ng-click="table.showParticipantDetailTable(row.id)">{{row.name}}</td>
         <td ng-repeat="key in report.keys">{{row.scores[key].overall}}</td>
 		<td>{{row.overall}}</td>
       </tr>
     </table>
-	<table class="participantTable" ng-show="report.selectParticipantDetailTable">
+	<table class="participantTable" ng-show="table.selectParticipantDetailTable" ng-controller="participantDetailController as participant">
       <tr>
         <td>
           <table>
             <tr><th >Name</th></tr>
-            <tr><td>{{report.selectParticipant.name}}</td></tr>
+            <tr><td>{{participant.selectParticipant.name}}</td></tr>
           </table>
         </td>
-         <td ng-repeat="key in report.keys">
+         <td ng-repeat="key in participant.keys">
           <table>
             <tr>
               <th style="width:75%">{{key}}</th>
-              <th style="width:25%">{{report.selectParticipant.scores[key].overall}}</th>
+              <th style="width:25%">{{participant.selectParticipant.scores[key].overall}}</th>
             </tr>
-            <tr ng-repeat="competency in report.scoreCompetency[key]">
+            <tr ng-repeat="competency in participant.scoreCompetency[key]">
               <td>{{competency}}</td>
-              <td>{{report.selectParticipant.scores[key][competency]}}</td>
+              <td>{{participant.selectParticipant.scores[key][competency]}}</td>
             </tr>
           </table>
         </td>
