@@ -22,7 +22,7 @@
 		  }
 		};
 		
-		this.selectParticipant = function(participantId){
+		this.showParticipantDetail = function(participantId){
 			console.log(participantId);
 			this.selectMainTable=false;
 			this.selectParticipantDetailTable=true;
