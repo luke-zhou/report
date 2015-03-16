@@ -3,46 +3,30 @@
 // Declare app level module which depends on views, and components
 (function(){
 	var app = angular.module('report', []);
-	
+
 	app.controller('reportController', function(){
 		this.rows = participants;
 		this.keys = [];
+		this.scoreCompetency =[];
+		this.selectMainTable=true;
+		this.selectParticipantDetailTable=false;
 		
 		for (var key in this.rows[0].scores) {
 		  if (this.rows[0].scores.hasOwnProperty(key)) {
 			this.keys.push(key);
-		  }
-		};
-
-	});
-	
-	app.controller('participantDetailController', function(){
-		this.scoreCompetency =[];
-		this.keys = [];
-
-		this.selectParticipant= selectParticipant;
-		
-		for (var key in this.selectParticipant.scores) {
-		  if (this.selectParticipant.scores.hasOwnProperty(key)) {
-			this.keys.push(key);	
 			var competencySet=[];
-			for (var competency in this.selectParticipant.scores[key]){
+			for (var competency in this.rows[0].scores[key]){
 				competencySet.push(competency);
 			}
 			this.scoreCompetency[key]=competencySet;
 		  }
 		};
-	});
-	
-	app.controller('tableController', function(){
-		this.selectMainTable=true;
-		this.selectParticipantDetailTable=false;
-				
-		this.showParticipantDetailTable = function(participantId){
+		
+		this.selectParticipant = function(participantId){
 			console.log(participantId);
 			this.selectMainTable=false;
 			this.selectParticipantDetailTable=true;
-			selectParticipant = getParticipant(participantId);
+			this.selectParticipant = getParticipant(participantId);
 		};
 		
 		var getParticipant = function(participantId){
@@ -51,8 +35,7 @@
 				var participant = participants[index];
 				if (participant.id==participantId) return participant;
 			}
-		};
-			
+		}
 	});
 
 	var participants=[
@@ -141,7 +124,5 @@
 		overall: 60
 	}
 	];
-	
-	var selectParticipant=participants[0];
 
 })();
