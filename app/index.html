@@ -19,7 +19,7 @@
   <div class="root" ng-controller="reportController as report">
     <table class="mainTable" ng-show="report.selectMainTable">
       <tr>
-		<th>Name</th>
+		<th ng-click="report.showMainTable()">Name</th>
         <th ng-repeat="key in report.keys" ng-click="report.showAssessmentDetail(key)">{{key}}</th>
 		<th>Overall</th>
       </tr>
@@ -33,14 +33,14 @@
       <tr>
         <td>
           <table>
-            <tr><th >Name</th></tr>
+            <tr><th ng-click="report.showMainTable()">Name</th></tr>
             <tr><td>{{report.selectParticipant.name}}</td></tr>
           </table>
         </td>
          <td ng-repeat="key in report.keys">
           <table>
             <tr>
-              <th style="width:75%">{{key}}</th>
+              <th style="width:75%" ng-click="report.showAssessmentDetail(key)">{{key}}</th>
               <th style="width:25%">{{report.selectParticipant.scores[key].overall}}</th>
             </tr>
             <tr ng-repeat="competency in report.scoreCompetency[key]">
@@ -53,7 +53,7 @@
     </table>
 	<table class="assessmentDetailTable" ng-show="report.selectAssessmentDatailTable">
       <tr>
-		<th>Name</th>
+		<th ng-click="report.showMainTable()">Name</th>
         <th ng-repeat="competency in report.scoreCompetency[report.selectAssessmentKey]">{{competency}}</th>
       </tr>
       <tr ng-repeat="participant in report.rows">

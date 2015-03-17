@@ -40,6 +40,12 @@
 			this.selectAssessmentKey= key;
 		}
 		
+		this.showMainTable = function() {
+			this.selectMainTable=true;
+			this.selectParticipantDetailTable=false;
+			this.selectAssessmentDatailTable=false;		
+		}
+		
 		var getParticipant = function(participantId){
 			console.log("participants:"+participants);
 			for (var index in participants){
