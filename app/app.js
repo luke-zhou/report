@@ -10,6 +10,7 @@
 		this.scoreCompetency =[];
 		this.selectMainTable=true;
 		this.selectParticipantDetailTable=false;
+		this.selectAssessmentDatailTable=false;
 		
 		for (var key in this.rows[0].scores) {
 		  if (this.rows[0].scores.hasOwnProperty(key)) {
@@ -23,11 +24,21 @@
 		};
 		
 		this.showParticipantDetail = function(participantId){
-			console.log(participantId);
+			console.log('click participant:'+participantId);
 			this.selectMainTable=false;
 			this.selectParticipantDetailTable=true;
+			this.selectAssessmentDatailTable=false;
 			this.selectParticipant = getParticipant(participantId);
 		};
+		
+		this.showAssessmentDetail = function(key){
+			console.log('click assessment:'+key);
+			this.selectMainTable=false;
+			this.selectParticipantDetailTable=false;
+			this.selectAssessmentDatailTable=true;
+			
+			this.selectAssessmentKey= key;
+		}
 		
 		var getParticipant = function(participantId){
 			console.log("participants:"+participants);
@@ -35,7 +46,8 @@
 				var participant = participants[index];
 				if (participant.id==participantId) return participant;
 			}
-		}
+		};
+		
 	});
 
 	var participants=[

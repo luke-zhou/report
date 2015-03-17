@@ -58,5 +58,30 @@
   vertical-align:top;
 }
 
+.assessmentDetailTable{
+  display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+	    border: 1px solid black;
+}
+
+.assessmentDetailTable tr{
+  height:35px;
+}
+
+.assessmentDetailTable th{
+  display: table-cell
+  width:150px;
+  border: 1px solid black;
+}
+
+.assessmentDetailTable td{
+  display: tablec-cell;
+  width:150px;
+  text-align: center;
+  vertical-align:top;
+    border: 1px solid black;
+}
+
 
 
