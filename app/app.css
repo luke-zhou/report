@@ -84,3 +84,24 @@
 
 
 
+#chart div {
+  font: 15px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
+.chart{
+margin: auto;
+width: 750px;
+position: relative;
+top: 200px;
+
+}
+
+
+
+
+
