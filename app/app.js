@@ -46,14 +46,14 @@
 			this.selectAssessmentDatailTable=false;		
 		}
 		
-		this.updateChart = function(){
+		this.updateChart = function(score){
 		var data = 
 			{
 				min:4,
 				max:96,
-				avg:65,
-				score:86
+				avg:65
 			};
+			data.score = score;
 			updateChart(data);
 		}
 		
