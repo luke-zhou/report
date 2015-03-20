@@ -46,6 +46,17 @@
 			this.selectAssessmentDatailTable=false;		
 		}
 		
+		this.updateChart = function(){
+		var data = 
+			{
+				min:4,
+				max:96,
+				avg:65,
+				score:86
+			};
+			updateChart(data);
+		}
+		
 		var getParticipant = function(participantId){
 			console.log("participants:"+participants);
 			for (var index in participants){

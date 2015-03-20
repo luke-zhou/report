@@ -1,0 +1,65 @@
+.chart .background{
+	background-color:lavender;
+	position:absolute;
+	height: 25px;
+}
+
+.chart .score-range{
+	background-color:palegreen;
+	position:absolute;
+	top:0;
+}
+
+.chart .min-text{
+	position:absolute;
+	top:-20px;
+}
+
+.chart .min-num{
+	position:absolute;
+	top:25px;
+}
+
+.chart .avg-bar{
+	position:absolute;
+	top:0px;
+	background-color:coral;
+	height: 25px;
+}
+
+.chart .avg-text{
+	position:absolute;
+	top:-20px;
+}
+
+.chart .avg-num{
+	position:absolute;
+	top:25px;
+}
+
+.chart .score-bar{
+	position:absolute;
+	top:0px;
+	background-color:black;
+	height: 25px;
+}
+
+.chart .score-text{
+	position:absolute;
+	top:-20px;
+}
+
+.chart .score-num{
+	position:absolute;
+	top:25px;
+}
+
+.chart .max-text{
+	position:absolute;
+	top:-20px;
+}
+
+.chart .max-num{
+	position:absolute;
+	top:25px;
+}

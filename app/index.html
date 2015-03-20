@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
   <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="chart.css">
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
@@ -25,7 +26,7 @@
       </tr>
       <tr ng-repeat="row in report.rows">
 		<td ng-click="report.showParticipantDetail(row.id)">{{row.name}}</td>
-        <td ng-repeat="key in report.keys">{{row.scores[key].overall}}</td>
+        <td ng-repeat="key in report.keys" ng-click="report.updateChart()">{{row.scores[key].overall}}</td>
 		<td>{{row.overall}}</td>
       </tr>
     </table>
@@ -64,7 +65,18 @@
   </div>
   
 <div class="chart">
-
+	<div class="background" ></div>
+	<div class="score-range" ></div>
+	<div class="min-text" ></div>
+	<div class="min-num" ></div>
+	<div class="avg-bar" ></div>
+	<div class="avg-text" ></div>
+	<div class="avg-num" ></div>
+	<div class="score-bar" ></div>
+	<div class="score-text" ></div>
+	<div class="score-num" ></div>
+	<div class="max-text" ></div>
+	<div class="max-num" ></div>
 </div>
 
   <!-- In production use:
@@ -73,7 +85,7 @@
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="app.js"></script>
-  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="lib/d3.min.js" charset="utf-8"></script>
   <script src="chart.js"></script>
   
 </body>
