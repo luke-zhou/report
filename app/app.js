@@ -11,6 +11,8 @@
 		this.selectMainTable=true;
 		this.selectParticipantDetailTable=false;
 		this.selectAssessmentDatailTable=false;
+		this.selectKey;
+		this.selectParticipantId;
 		
 		for (var key in this.rows[0].scores) {
 		  if (this.rows[0].scores.hasOwnProperty(key)) {
@@ -47,11 +49,15 @@
 		};
 		
 		this.updateChart = function(participant, scoreKey, competency){
-		console.log(participant.scores[scoreKey][competency]);
+			this.selectKey=scoreKey;
+			this.selectParticipantId=participant.id;
+			var data = prepareChartData(participant, scoreKey, competency);
 
-		var data = prepareChartData(participant, scoreKey, competency);
-
-		updateChart(data);
+			updateChart(data);
+		};
+		
+		this.isSelectCell = function(participant,scoreKey){
+			return this.selectKey===scoreKey && this.selectParticipantId ===participant.id;
 		};
 
 		var prepareChartData= function(participant, scoreKey, competency){

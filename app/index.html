@@ -26,7 +26,7 @@
       </tr>
       <tr ng-repeat="row in report.rows">
 		<td ng-click="report.showParticipantDetail(row.id)">{{row.name}}</td>
-        <td ng-repeat="key in report.keys" ng-click="report.updateChart(row, key, 'overall')">{{row.scores[key].overall}}</td>
+        <td ng-repeat="key in report.keys" ng-click="report.updateChart(row, key, 'overall')" ng-class="{highlight:report.isSelectCell(row,key)}">{{row.scores[key].overall}}</td>
 		<td>{{row.overall}}</td>
       </tr>
     </table>
