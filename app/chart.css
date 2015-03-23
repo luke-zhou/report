@@ -12,11 +12,6 @@
 
 .chart .min-text{
 	position:absolute;
-	top:-20px;
-}
-
-.chart .min-num{
-	position:absolute;
 	top:25px;
 }
 
@@ -29,12 +24,6 @@
 
 .chart .avg-text{
 	position:absolute;
-	top:-20px;
-}
-
-.chart .avg-num{
-	position:absolute;
-	top:25px;
 }
 
 .chart .score-bar{
@@ -46,20 +35,9 @@
 
 .chart .score-text{
 	position:absolute;
-	top:-20px;
-}
-
-.chart .score-num{
-	position:absolute;
-	top:25px;
 }
 
 .chart .max-text{
 	position:absolute;
 	top:-20px;
-}
-
-.chart .max-num{
-	position:absolute;
-	top:25px;
 }
