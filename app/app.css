@@ -53,7 +53,6 @@
 }
 .participantTable td{
   display: tablec-cell;
-  width:150px;
   text-align: center;
   vertical-align:top;
 }
@@ -94,6 +93,13 @@ top: 200px;
 .highlight{
   background-color: springgreen;
 }
+
+.searchBar{
+	margin-left: auto;
+    margin-right: 0;
+    width: 236px;
+}
+
 
 
 

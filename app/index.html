@@ -17,14 +17,20 @@
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
+
   <div class="root" ng-controller="reportController as report">
+
+		<div class="searchBar">
+		  Search: <input ng-model="query">
+		</div>
+
     <table class="mainTable" ng-show="report.selectMainTable">
       <tr>
 		<th ng-click="report.showMainTable()">Name</th>
         <th ng-repeat="key in report.keys" ng-click="report.showAssessmentDetail(key)">{{key}}</th>
 		<th>Overall</th>
       </tr>
-      <tr ng-repeat="row in report.rows">
+      <tr ng-repeat="row in report.rows | filter:query">
 		<td ng-click="report.showParticipantDetail(row.id)">{{row.name}}</td>
         <td ng-repeat="key in report.keys" ng-click="report.updateChart(row, key, 'overall')" ng-class="{highlight:report.isSelectCell(row,key)}">{{row.scores[key].overall}}</td>
 		<td>{{row.overall}}</td>
