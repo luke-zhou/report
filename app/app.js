@@ -54,6 +54,7 @@
 			var data = prepareChartData(participant, scoreKey, competency);
 
 			updateChart(data);
+			//updateCurveChart();
 		};
 		
 		this.isSelectCell = function(participant,scoreKey){

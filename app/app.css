@@ -97,6 +97,7 @@ top: 200px;
 .searchBar{
 	margin-left: auto;
     margin-right: 0;
+	margin-bottom: 5px;
     width: 236px;
 }
 
