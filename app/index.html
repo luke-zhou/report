@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
   <link rel="stylesheet" href="app.css">
-    <link rel="stylesheet" href="chart.css">
+	<link rel="stylesheet" href="chart.css">
+	<link rel="stylesheet" href="curve-chart.css">
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
@@ -81,7 +82,13 @@
 	<div class="max-text" ></div>
 </div>
 <div class="curve-chart">
-	
+	<svg>
+		<g>
+			<g class="x axis"></g>
+			<g class="y axis"></g>
+			<path class="line"></path>
+		</g>
+	</svg>
 </div>
 
   <!-- In production use:

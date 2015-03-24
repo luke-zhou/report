@@ -14,8 +14,8 @@ var margin = {
         bottom: 30,
         left: 50
     },
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 750 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
 var x = d3.scale.linear()
     .range([0, width]);
@@ -39,10 +39,10 @@ var line = d3.svg.line()
         return y(d.p);
     });
 
-var svg = d3.select(".curve-chart").append("svg")
+var svg = d3.select(".curve-chart svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-    .append("g")
+    .select("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 x.domain(d3.extent(data, function(d) {
@@ -51,17 +51,15 @@ x.domain(d3.extent(data, function(d) {
 y.domain(d3.extent(data, function(d) {
     return d.p;
 }));
-/*
-svg.append("g")
-    .attr("class", "x axis")
+
+svg.select("g .x")
     .attr("transform", "translate(0," + height + ")")
     .call(xAxis);
 
-svg.append("g")
-    .attr("class", "y axis")
+svg.select("g .y")
     .call(yAxis);
-*/
-svg.append("path")
+
+svg.select(".line")
     .datum(data)
     .attr("class", "line")
     .attr("d", line);
@@ -99,15 +97,15 @@ function normal() {
         rds = x * x + y * y;
     } while (rds == 0 || rds > 1);
     c = Math.sqrt(-2 * Math.log(rds) / rds); // Box-Muller transform
-    return x * c; // throw away extra sample y * c
+    return x * c*12.5+50; // throw away extra sample y * c
 }
 
 //taken from Jason Davies science library
 // https://github.com/jasondavies/science.js/
 function gaussian(x) {
 	var gaussianConstant = 1 / Math.sqrt(2 * Math.PI),
-		mean = 0,
-    	sigma = 1;
+		mean = 50,
+    	sigma = 12.5;
 
     x = (x - mean) / sigma;
     return gaussianConstant * Math.exp(-.5 * x * x) / sigma;
