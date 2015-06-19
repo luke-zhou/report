@@ -1,6 +1,6 @@
 
 
-var updateCurveChart = function (){
+var updateCurveChart = function (score){
 
 //setting up empty data array
 var data = [];
@@ -64,6 +64,13 @@ svg.select(".line")
     .attr("class", "line")
     .attr("d", line);
 
+var columnGroup = svg.select(".column").attr("transform", "translate(50,0)");
+
+columnGroup.append("rect")
+      .attr("y", function(d) { return y(score); })
+      .attr("height", function(d) { return height - y(score); })
+      .attr("width", 10 - 1);
+	
 function getData() {
 
 // loop to populate data array with 
