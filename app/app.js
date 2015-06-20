@@ -52,9 +52,8 @@
 			this.selectKey=scoreKey;
 			this.selectParticipantId=participant.id;
 			var data = prepareChartData(participant, scoreKey, competency);
-
 			//updateChart(data);
-			updateCurveChart();
+			updateCurveChart(data);
 		};
 		
 		this.isSelectCell = function(participant,scoreKey){

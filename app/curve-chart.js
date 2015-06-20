@@ -64,11 +64,11 @@ svg.select(".line")
     .attr("class", "line")
     .attr("d", line);
 
-var columnGroup = svg.select(".column").attr("transform", "translate(50,0)");
+var columnGroup = svg.select(".column").attr("transform", "translate("+x(score.score)+",0)");
 
 columnGroup.append("rect")
-      .attr("y", function(d) { return y(score); })
-      .attr("height", function(d) { return height - y(score); })
+      .attr("y", function(d) { return d.p; })
+      .attr("height", function(d) { return height - d.p; })
       .attr("width", 10 - 1);
 	
 function getData() {
