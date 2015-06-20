@@ -67,8 +67,8 @@ svg.select(".line")
 var columnGroup = svg.select(".column").attr("transform", "translate("+x(score.score)+",0)");
 
 columnGroup.append("rect")
-      .attr("y", function(d) { return d.p; })
-      .attr("height", function(d) { return height - d.p; })
+      .attr("y", function(d) { return y(gaussian(score.score)); })
+      .attr("height", function(d) { return height - y(gaussian(score.score)); })
       .attr("width", 10 - 1);
 	
 function getData() {
