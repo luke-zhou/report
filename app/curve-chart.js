@@ -64,15 +64,14 @@ svg.select(".line")
     .attr("class", "line")
     .attr("d", line);
 
-var columnGroup = svg.select(".column").attr("transform", "translate("+x(score.score)+",0)");
+var scoreGroup = svg.select("g#score").selectAll("g").data([score.min, score.max, score.avg, score.score])
+scoreGroup.enter().append("g").append("rect");
 
-var column = columnGroup.selectAll("rect").data([score]);
-column.enter().append("rect");
-column.attr("y", function(d) { return y(gaussian(d.score)); })
-  .attr("height", function(d) { return height - y(gaussian(d.score)); })
-  .attr("width", 10 - 1);
+scoreGroup.attr("transform", function(d){return "translate("+x(d)+",0)";});
 
-
+scoreGroup.select("rect").attr("y", function(d) { return y(gaussian(d)); })
+  .attr("height", function(d) { return height - y(gaussian(d)); })
+  .attr("width", 3);
 	
 function getData() {
 
