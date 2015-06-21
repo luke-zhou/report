@@ -66,10 +66,13 @@ svg.select(".line")
 
 var columnGroup = svg.select(".column").attr("transform", "translate("+x(score.score)+",0)");
 
-columnGroup.append("rect")
-      .attr("y", function(d) { return y(gaussian(score.score)); })
-      .attr("height", function(d) { return height - y(gaussian(score.score)); })
-      .attr("width", 10 - 1);
+var column = columnGroup.selectAll("rect").data([score]);
+column.enter().append("rect");
+column.attr("y", function(d) { return y(gaussian(d.score)); })
+  .attr("height", function(d) { return height - y(gaussian(d.score)); })
+  .attr("width", 10 - 1);
+
+
 	
 function getData() {
 
