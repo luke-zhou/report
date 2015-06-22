@@ -63,14 +63,17 @@ svg.select(".line")
     .datum(data)
     .attr("class", "line")
     .attr("d", line);
+	
+var scores = [{color:"#FF0000",score:score.min},{color:"#00FF00",score:score.max},{color:"#FFFF00",score:score.avg},{color:"#FF9900",score:score.score}]
 
-var scoreGroup = svg.select("g#score").selectAll("g").data([score.min, score.max, score.avg, score.score])
+var scoreGroup = svg.select("g#score").selectAll("g").data(scores)
 scoreGroup.enter().append("g").append("rect");
 
-scoreGroup.attr("transform", function(d){return "translate("+x(d)+",0)";});
+scoreGroup.attr("transform", function(d){return "translate("+x(d.score)+",0)";});
 
-scoreGroup.select("rect").attr("y", function(d) { return y(gaussian(d)); })
-  .attr("height", function(d) { return height - y(gaussian(d)); })
+scoreGroup.select("rect").attr("y", function(d) { return y(gaussian(d.score)); })
+  .attr("height", function(d) { return height - y(gaussian(d.score)); })
+  .attr("fill", function(d) { return d.color; })
   .attr("width", 3);
 	
 function getData() {
