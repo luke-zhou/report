@@ -63,6 +63,19 @@ svg.select(".line")
     .datum(data)
     .attr("class", "line")
     .attr("d", line);
+
+var legend = svg.select("g#legend")
+    .attr("transform", "translate("+(width-100)+"," + (height-200)/2 + ")");
+    
+legend.append("rect").attr("y", 20).attr("height", 10).attr("fill", "#FF0000").attr("width", 20);
+legend.append("rect").attr("y", 40).attr("height", 10).attr("fill", "#00FF00").attr("width", 20);
+legend.append("rect").attr("y", 60).attr("height", 10).attr("fill", "#FFFF00").attr("width", 20);
+legend.append("rect").attr("y", 80).attr("height", 10).attr("fill", "#FF9900").attr("width", 20);
+
+legend.append("text").attr("y", 20).attr("x", 30).text("MIN");
+legend.append("text").attr("y", 40).attr("x", 30).text("MAX");
+legend.append("text").attr("y", 60).attr("x", 30).text("AVG");
+legend.append("text").attr("y", 80).attr("x", 30).text("CURRENT");
 	
 var scores = [{color:"#FF0000",score:score.min},{color:"#00FF00",score:score.max},{color:"#FFFF00",score:score.avg},{color:"#FF9900",score:score.score}]
 
