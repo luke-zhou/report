@@ -5,7 +5,6 @@
 	var app = angular.module('mapping', []);
 
 	app.controller('mappingController', function(){
-
 		
 	});
 
