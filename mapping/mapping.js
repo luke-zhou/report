@@ -5,7 +5,8 @@
 	var app = angular.module('mapping', []);
 
 	app.controller('mappingController', function(){
-		
+		//this.nodeGroupName="test";
+		console.log(this.nodeGroupName);
 	});
 
 })();
