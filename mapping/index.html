@@ -12,18 +12,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+  <link rel="stylesheet" href="style/mapping.css">
     <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
 
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
-  <script src="mapping.js"></script>
+  <script src="js/mapping.js"></script>
 </head>
 <body>
 
   <div class="root" ng-controller="mappingController as mapping">
+    <div>
+      <label>Node Group Name:</label>
+      <input class="input-box node-group-name" type="text" ng-model="mapping.nodeGroupName" placeholder="Enter a Node Group Name here">
+      <hr>
+      <div>
+      <label>Nodes:</label>
+      <br />
+      <ol class="unstyled">
+        <li ng-repeat="node in mapping.nodes">
+          <span class="done">{{node.name}}</span>
+        </li>
+      </ol>
+    </div>
+      <form ng-submit="mapping.addNodes()">
         <div>
-      <label>Name:</label>
-      <input type="text" ng-model="mapping.nodeGroupName" placeholder="Enter a Node Group Name here">
+        <label>Name:</label>
+        <input class="input-box node-value" type="text" ng-model="mapping.nodeName" placeholder="Enter a node name here">
+        <label>Code:</label>
+        <input class="input-box node-value" type="text" ng-model="mapping.nodeCode" placeholder="Enter a node code here">
+        </div>
+        <div>
+        <label>Type:</label>
+        <select>
+          <option value="Domain">Domain</option>
+          <option value="Cluster">Cluster</option>
+          <option value="Competency">Competency</option>
+        </select>
+        <label>Order:</label>
+        <select>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <label>Parent Node:</label>
+        <select>
+          <option value="1">node1</option>
+          <option value="2">node2</option>
+          <option value="3">node3</option>
+        </select>
+        <label>Ranking:</label>
+        <select>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        </div>
+        <div>
+        <label>Description:</label>
+          <textarea rows="4" cols="50"></textarea>
+      </div>
+        <input class="btn-primary" type="submit" value="add">
+      </form>
       <hr>
       <h1>Hello {{mapping.nodeGroupName}}!</h1>
     </div>

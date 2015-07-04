@@ -6,7 +6,10 @@
 
 	app.controller('mappingController', function(){
 		//this.nodeGroupName="test";
-		console.log(this.nodeGroupName);
+		this.nodes=[];
+		this.addNodes = function(){
+			this.nodes.push({name:this.nodeName});
+		}
 	});
 
 })();
