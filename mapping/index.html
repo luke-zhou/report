@@ -32,6 +32,13 @@
       <ol class="unstyled">
         <li ng-repeat="node in mapping.nodes">
           <span class="done">{{node.name}}</span>
+          <span class="done">{{node.code}}</span>
+          <span class="done">{{node.type}}</span>
+          <span class="done">{{node.order}}</span>
+          <span class="done">{{node.parentNode}}</span>
+          <span class="done">{{node.rank}}</span>
+          <span class="done">{{node.weight}}</span>
+          <span class="done">{{node.description}}</span>
         </li>
       </ol>
     </div>
@@ -44,33 +51,35 @@
         </div>
         <div>
         <label>Type:</label>
-        <select>
+        <select class="input-select node-option" ng-model="mapping.nodeType">
           <option value="Domain">Domain</option>
           <option value="Cluster">Cluster</option>
           <option value="Competency">Competency</option>
         </select>
         <label>Order:</label>
-        <select>
+        <select class="input-select node-option" ng-model="mapping.nodeOrder">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
         </select>
         <label>Parent Node:</label>
-        <select>
+        <select class="input-select node-option" ng-model="mapping.parentNode">
           <option value="1">node1</option>
           <option value="2">node2</option>
           <option value="3">node3</option>
         </select>
-        <label>Ranking:</label>
-        <select>
+        <label>Rank:</label>
+        <select class="input-select node-option" ng-model="mapping.nodeRank">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
         </select>
+        <label>Weight:</label>
+        <input class="input-box node-value" type="text" ng-model="mapping.nodeWeight" placeholder="Enter a node weight here">
         </div>
         <div>
         <label>Description:</label>
-          <textarea rows="4" cols="50"></textarea>
+          <textarea rows="4" cols="50" ng-model="mapping.nodeDescription" placeholder="Enter a node description here"></textarea>
       </div>
         <input class="btn-primary" type="submit" value="add">
       </form>
