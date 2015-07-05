@@ -1,0 +1,21 @@
+.input-text-box{
+
+}
+
+.node-group-name{
+	width : 400px;
+}
+
+.node-value{
+	width : 300px;
+}
+
+.node-description{
+	width: 400px;
+	height: 100px;
+	vertical-align: top;
+}
+
+.node-option{
+	width:150px;
+}

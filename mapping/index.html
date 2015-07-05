@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> 
-<html lang="en" ng-app="report" class="no-js"> <!--<![endif]-->
+<html lang="en" ng-app="mapping" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,14 +12,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
-  <link rel="stylesheet" href="app.css">
-	<link rel="stylesheet" href="chart.css">
-	<link rel="stylesheet" href="curve-chart.css">
+  <link rel="stylesheet" href="style/mapping.css">
+    <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+  <script src="js/mapping.js"></script>
 </head>
 <body>
 
   <div class="root" ng-controller="mappingController as mapping">
+    <div>
+      <label>Node Group Name:</label>
+      <input class="input-box node-group-name" type="text" ng-model="mapping.nodeGroupName" placeholder="Enter a Node Group Name here">
+      <hr>
+      <div>
+      <label>Nodes:</label>
+      <br />
+      <ol class="unstyled">
+        <li ng-repeat="node in mapping.nodes">
+          <span>{{node.name}}</span>
+          <span>{{node.code}}</span>
+          <span>{{node.type}}</span>
+          <span>{{node.order}}</span>
+          <span>{{node.parentNode}}</span>
+          <span>{{node.rank}}</span>
+          <span>{{node.weight}}</span>
+          <span>{{node.description}}</span>
+        </li>
+      </ol>
+    </div>
+      <form ng-submit="mapping.addNodes()">
+        <div>
+        <label>Name:</label>
+        <input class="input-box node-value" type="text" ng-model="mapping.nodeName" ng-change="mapping.updateCode()" placeholder="Enter a node name here">
+        <label>Code:</label>
+        <input class="input-box node-value" type="text" ng-model="mapping.nodeCode" placeholder="Enter a node code here">
+        </div>
+        <div>
+        <label>Type:</label>
+        <select class="input-select node-option" ng-model="mapping.nodeType">
+          <option value="Domain">Domain</option>
+          <option value="Cluster">Cluster</option>
+          <option value="Competency">Competency</option>
+        </select>
+        <label>Order:</label>
+        <select class="input-select node-option" ng-model="mapping.nodeOrder" ng-options="number for number in [1,2,3,4,5]">
+        </select>
+        <label>Parent Node:</label>
+        <select class="input-select node-option" ng-model="mapping.parentNode" ng-disabled="mapping.nodeType=='Domain'||mapping.nodeType==null">
+          <option value="1">node1</option>
+          <option value="2">node2</option>
+          <option value="3">node3</option>
+        </select>
+        <label>Rank:</label>
+        <select class="input-select node-option" ng-model="mapping.nodeRank" ng-disabled="mapping.parentNode==null">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <label>Weight:</label>
+        <input class="input-box node-value" type="text" ng-model="mapping.nodeWeight" placeholder="Enter a node weight here" ng-disabled="mapping.nodeRank==null">
+        </div>
+        <div>
+        <label>Description:</label>
+          <textarea rows="4" cols="50" ng-model="mapping.nodeDescription" placeholder="Enter a node description here"></textarea>
+      </div>
+        <input type="submit" value="add">
+      </form>
+      <hr>
+      <h1>Hello {{mapping.nodeGroupName}}!</h1>
+    </div>
   </div>
 
 
