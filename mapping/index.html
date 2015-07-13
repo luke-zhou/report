@@ -57,7 +57,7 @@
           <option value="Competency">Competency</option>
         </select>
         <label>Order:</label>
-        <select class="input-select node-option" ng-model="mapping.nodeOrder" ng-options="number for number in [1,2,3,4,5]">
+        <select class="input-select node-option" ng-model="mapping.nodeOrder" ng-options="number for number in mapping.orders">
         </select>
         <label>Parent Node:</label>
         <select class="input-select node-option" ng-model="mapping.parentNode" ng-disabled="mapping.nodeType=='Domain'||mapping.nodeType==null">
