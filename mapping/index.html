@@ -42,7 +42,7 @@
         </li>
       </ol>
     </div>
-      <form ng-submit="mapping.addNodes()">
+      <form ng-submit="mapping.addNode()">
         <div>
         <label>Name:</label>
         <input class="input-box node-value" type="text" ng-model="mapping.nodeName" ng-change="mapping.updateCode()" placeholder="Enter a node name here">
@@ -60,10 +60,7 @@
         <select class="input-select node-option" ng-model="mapping.nodeOrder" ng-options="number for number in mapping.orders">
         </select>
         <label>Parent Node:</label>
-        <select class="input-select node-option" ng-model="mapping.parentNode" ng-disabled="mapping.nodeType=='Domain'||mapping.nodeType==null">
-          <option value="1">node1</option>
-          <option value="2">node2</option>
-          <option value="3">node3</option>
+        <select class="input-select node-option" ng-model="mapping.parentNode" ng-disabled="mapping.nodeType=='Domain'||mapping.nodeType==null" ng-options="node.name for node in mapping.nodes">
         </select>
         <label>Rank:</label>
         <select class="input-select node-option" ng-model="mapping.nodeRank" ng-disabled="mapping.parentNode==null">
@@ -81,6 +78,29 @@
         <input type="submit" value="add">
       </form>
       <hr>
+	   <ol class="unstyled">
+        <li ng-repeat="mappingNode in mapping.mappings">
+          <span>{{mappingNode.clientNode.name}}</span>
+          <span>{{mappingNode.childNodes}}</span>
+
+        </li>
+      </ol>
+	  <form ng-submit="mapping.addMapping()">
+		<label>Client Node:</label>
+		<select class="input-select node-option" ng-model="mapping.selectClientNode" ng-options="node.name for node in mapping.nodes"></select>
+		<span>{{mapping.selectClientNode.code}}</span>
+		<input class="input-box node-value" type="text" ng-model="mapping.selectTgCompetencyWeight" placeholder="Enter a node weight here">
+		<label>Testgird Node:</label>
+		<select class="input-select node-option" ng-model="mapping.selectTgCompetency"  ng-options="node.name for node in mapping.tgCompetencies"></select>
+		<span>{{mapping.selectTgCompetency.code}}</span>
+		        <label>Rank:</label>
+        <select class="input-select node-option" ng-model="mapping.selectTgCompetencyRank" >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+		<input type="submit" value="add">
+	</form>
       <h1>Hello {{mapping.nodeGroupName}}!</h1>
     </div>
   </div>
