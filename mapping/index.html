@@ -85,6 +85,20 @@
 
         </li>
       </ol>
+	  <table class="mappingTable">
+		  <tr>
+			<td rowspan="2">client1</td><td>competency1</td>
+		  </tr>
+		  <tr>
+			<td>competency2</td>
+		  </tr>
+		  <tr>
+			<td rowspan="2">client2</td><td>competency3</td>
+		  </tr>
+		  <tr>
+			<td>competency4</td>
+		  </tr>
+	  </table>
 	  <form ng-submit="mapping.addMapping()">
 		<label>Client Node:</label>
 		<select class="input-select node-option" ng-model="mapping.selectClientNode" ng-options="node.name for node in mapping.nodes"></select>

@@ -19,3 +19,8 @@
 .node-option{
 	width:150px;
 }
+
+.mappingTable td{
+
+		border: 1px solid black;
+}
