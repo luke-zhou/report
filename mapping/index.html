@@ -85,6 +85,13 @@
 
         </li>
       </ol>
+      <table class="mappingTable">
+        <tr ng-repeat="childNode in mapping.totalChildNodes">
+          <td>{{childNode.tgCompetency}}</td>
+          <td>{{childNode.weight}}</td>
+          <td>{{childNode.rank}}</td>
+        </tr>
+      </table>
 	  <table class="mappingTable">
 		  <tr>
 			<td rowspan="2">client1</td><td>competency1</td>

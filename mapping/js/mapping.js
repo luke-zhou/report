@@ -10,24 +10,31 @@
 		this.orders=[1];
 		this.tgCompetencies = tgCompetencies;
 		this.mappings=[];
+		this.totalChildNodes=[];
 		
 		var generateNumber = function(value, index){
 			return Number(index+1);
 		};
-		
-		var findNodeByCode = function(code, mappings){
+
+		this.mappings.findNodeByCode = function(code){
 			var nodeInMappings; 
-			mappings.forEach(function(value){if(value.clientNode.code == code) nodeInMappings = value});
+			this.forEach(function(value){if(value.clientNode.code == code) nodeInMappings = value});
 			return nodeInMappings;
 		};
-		
-		this.updateOrderList = function(){
-			this.orders = Array.apply(null, {length:this.nodes.length+1}).map(generateNumber, Number);
+
+		this.mappings.countTgCompetencies = function(){
+			var totalChildNodes =[];
+			this.forEach(function(value){totalChildNodes=totalChildNodes.concat(value.childNodes)});
+			return totalChildNodes;
+		};
+
+		this.orders.add = function(){
+			this.push(this.length+1);
 		};
 		
 		this.addNode = function(){
 			this.nodes.push({name:this.nodeName, code: this.nodeCode, type:this.nodeType, order:this.nodeOrder, parentNode:this.parentNode, rank:this.nodeRank, weight:this.nodeWeight, description:this.nodeDescription});
-			this.updateOrderList();
+			this.orders.add();
 		};
 
 		this.updateCode = function(){
@@ -35,16 +42,17 @@
 		};
 		
 		this.addMapping = function(){
-			var nodeInMappings = findNodeByCode(this.selectClientNode.code, this.mappings);
+			var nodeInMappings = this.mappings.findNodeByCode(this.selectClientNode.code);
 			
-			if (!nodeInMappings){
-				this.mappings.push({clientNode:this.selectClientNode,childNodes:[{tgCompetency:this.selectTgCompetency, weight:this.selectTgCompetencyWeight, rank:this.selectTgCompetencyRank}]});
+			if (nodeInMappings){
+				nodeInMappings.childNodes.push({tgCompetency:this.selectTgCompetency, weight:this.selectTgCompetencyWeight, rank:this.selectTgCompetencyRank});
 			}
 			else
 			{
-				console.log(nodeInMappings.childNodes);
-				nodeInMappings.childNodes.push({tgCompetency:this.selectTgCompetency, weight:this.selectTgCompetencyWeight, rank:this.selectTgCompetencyRank});
+				this.mappings.push({clientNode:this.selectClientNode,childNodes:[{tgCompetency:this.selectTgCompetency, weight:this.selectTgCompetencyWeight, rank:this.selectTgCompetencyRank}]});
 			}
+
+			this.totalChildNodes = this.mappings.countTgCompetencies();
 		};
 	});
 	
