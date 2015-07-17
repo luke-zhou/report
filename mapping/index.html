@@ -45,35 +45,35 @@
       <form ng-submit="mapping.addNode()">
         <div>
         <label>Name:</label>
-        <input class="input-box node-value" type="text" ng-model="mapping.nodeName" ng-change="mapping.updateCode()" placeholder="Enter a node name here">
+        <input class="input-box node-value" type="text" ng-model="mapping.node.nodeName" ng-change="mapping.updateCode()" placeholder="Enter a node name here">
         <label>Code:</label>
-        <input class="input-box node-value" type="text" ng-model="mapping.nodeCode" placeholder="Enter a node code here">
+        <input class="input-box node-value" type="text" ng-model="mapping.node.nodeCode" placeholder="Enter a node code here">
         </div>
         <div>
         <label>Type:</label>
-        <select class="input-select node-option" ng-model="mapping.nodeType">
+        <select class="input-select node-option" ng-model="mapping.node.nodeType">
           <option value="Domain">Domain</option>
           <option value="Cluster">Cluster</option>
           <option value="Competency">Competency</option>
         </select>
         <label>Order:</label>
-        <select class="input-select node-option" ng-model="mapping.nodeOrder" ng-options="number for number in mapping.orders">
+        <select class="input-select node-option" ng-model="mapping.node.nodeOrder" ng-options="number for number in mapping.orders">
         </select>
         <label>Parent Node:</label>
-        <select class="input-select node-option" ng-model="mapping.parentNode" ng-disabled="mapping.nodeType=='Domain'||mapping.nodeType==null" ng-options="node.name for node in mapping.nodes">
+        <select class="input-select node-option" ng-model="mapping.node.parentNode" ng-disabled="mapping.node.nodeType=='Domain'||mapping.node.nodeType==null" ng-options="node.name for node in mapping.nodes">
         </select>
         <label>Rank:</label>
-        <select class="input-select node-option" ng-model="mapping.nodeRank" ng-disabled="mapping.parentNode==null">
+        <select class="input-select node-option" ng-model="mapping.node.nodeRank" ng-disabled="mapping.parentNode==null">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
         </select>
         <label>Weight:</label>
-        <input class="input-box node-value" type="text" ng-model="mapping.nodeWeight" placeholder="Enter a node weight here" ng-disabled="mapping.nodeRank==null">
+        <input class="input-box node-value" type="text" ng-model="mapping.node.nodeWeight" placeholder="Enter a node weight here" ng-disabled="mapping.nodeRank==null">
         </div>
         <div>
         <label>Description:</label>
-          <textarea rows="4" cols="50" ng-model="mapping.nodeDescription" placeholder="Enter a node description here"></textarea>
+          <textarea rows="4" cols="50" ng-model="mapping.node.nodeDescription" placeholder="Enter a node description here"></textarea>
       </div>
         <input type="submit" value="add">
       </form>
@@ -86,26 +86,23 @@
         </li>
       </ol>
       <table class="mappingTable">
-        <tr ng-repeat="childNode in mapping.totalChildNodes">
-          <td>{{childNode.tgCompetency}}</td>
-          <td>{{childNode.weight}}</td>
-          <td>{{childNode.rank}}</td>
+        <tr ng-repeat="mapping in mapping.mappings">
+		  <td>
+			<table>
+				<tr>
+					<td>{{mapping.clientNode}}</td>
+				</tr>
+			</table>
+		  </td>
+          <td>
+			<table>
+				<tr ng-repeat="childNode in mapping.childNodes">
+				<td>{{childNode.tgCompetency}}</td><td>{{childNode.weight}}</td><td>{{childNode.rank}}</td>
+				</tr>
+			</table>
+		  </td>
         </tr>
       </table>
-	  <table class="mappingTable">
-		  <tr>
-			<td rowspan="2">client1</td><td>competency1</td>
-		  </tr>
-		  <tr>
-			<td>competency2</td>
-		  </tr>
-		  <tr>
-			<td rowspan="2">client2</td><td>competency3</td>
-		  </tr>
-		  <tr>
-			<td>competency4</td>
-		  </tr>
-	  </table>
 	  <form ng-submit="mapping.addMapping()">
 		<label>Client Node:</label>
 		<select class="input-select node-option" ng-model="mapping.selectClientNode" ng-options="node.name for node in mapping.nodes"></select>

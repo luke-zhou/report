@@ -6,26 +6,19 @@
 
 	app.controller('mappingController', function(){
 		//this.nodeGroupName="test";
+		this.node={};
 		this.nodes=[];
 		this.orders=[1];
 		this.tgCompetencies = tgCompetencies;
 		this.mappings=[];
-		this.totalChildNodes=[];
-		
-		var generateNumber = function(value, index){
-			return Number(index+1);
-		};
 
 		this.mappings.findNodeByCode = function(code){
 			var nodeInMappings; 
-			this.forEach(function(value){if(value.clientNode.code == code) nodeInMappings = value});
+			this.forEach(
+				function(value){
+				if(value.clientNode.code == code) nodeInMappings = value;
+				});
 			return nodeInMappings;
-		};
-
-		this.mappings.countTgCompetencies = function(){
-			var totalChildNodes =[];
-			this.forEach(function(value){totalChildNodes=totalChildNodes.concat(value.childNodes)});
-			return totalChildNodes;
 		};
 
 		this.orders.add = function(){
@@ -33,26 +26,49 @@
 		};
 		
 		this.addNode = function(){
-			this.nodes.push({name:this.nodeName, code: this.nodeCode, type:this.nodeType, order:this.nodeOrder, parentNode:this.parentNode, rank:this.nodeRank, weight:this.nodeWeight, description:this.nodeDescription});
+			this.nodes.push(
+			{ 
+			  name:this.node.nodeName, 
+			  code: this.node.nodeCode, 
+			  type:this.node.nodeType, 
+			  order:this.node.nodeOrder, 
+			  parentNode:this.node.parentNode, 
+			  rank:this.node.nodeRank, 
+			  weight:this.node.nodeWeight, 
+			  description:this.node.nodeDescription
+			});
 			this.orders.add();
+			this.node={};
 		};
 
+		//generate node code based on input node name
 		this.updateCode = function(){
-			this.nodeCode = this.nodeName.toUpperCase().replace(/ /g, "_");
+			this.node.nodeCode = this.node.nodeName.toUpperCase().replace(/ /g, "_");
 		};
 		
 		this.addMapping = function(){
 			var nodeInMappings = this.mappings.findNodeByCode(this.selectClientNode.code);
 			
 			if (nodeInMappings){
-				nodeInMappings.childNodes.push({tgCompetency:this.selectTgCompetency, weight:this.selectTgCompetencyWeight, rank:this.selectTgCompetencyRank});
+				nodeInMappings.childNodes.push(
+				{
+					tgCompetency:this.selectTgCompetency, 
+					weight:this.selectTgCompetencyWeight, 
+					rank:this.selectTgCompetencyRank
+				});
 			}
 			else
 			{
-				this.mappings.push({clientNode:this.selectClientNode,childNodes:[{tgCompetency:this.selectTgCompetency, weight:this.selectTgCompetencyWeight, rank:this.selectTgCompetencyRank}]});
+				this.mappings.push(
+				{
+					clientNode:this.selectClientNode,
+					childNodes:[{
+									tgCompetency:this.selectTgCompetency, 
+									weight:this.selectTgCompetencyWeight, 
+									rank:this.selectTgCompetencyRank
+								}]
+				});
 			}
-
-			this.totalChildNodes = this.mappings.countTgCompetencies();
 		};
 	});
 	
@@ -100,6 +116,6 @@
 							{name:"Thinks Globally", code:"THINKS_GLOBALLY"},
 							{name:"Thinks Innovatively", code:"THINKS_INNOVATIVELY"},
 							{name:"Meets Deadlines", code:"MEETS_DEADLINES"}
-						]
+						];
 
 })();
