@@ -11,6 +11,7 @@
 		this.orders=[1];
 		this.tgCompetencies = tgCompetencies;
 		this.mappings=[];
+		this.possibleParentNodes=[];
 
 		this.mappings.findNodeByCode = function(code){
 			var nodeInMappings; 
@@ -24,26 +25,53 @@
 		this.orders.add = function(){
 			this.push(this.length+1);
 		};
+
+		this.nodes.findByType = function(type){
+			return this.filter(function(value){return value.type === type});
+		};
+
+		this.node.getPossibleParentNodes = function(nodes){
+			if (this.type==="Cluster") return nodes.findByType("Domain");
+			if (this.type ==="Competency") return nodes.findByType("Cluster");
+			return [];
+		};
+
+		this.node.clear = function(){
+			this.name =null;
+			this.code =null;
+			this.type =null;
+			this.order =null;
+			this.parentNode = null;
+			this.rank =null;
+			this.weight =null;
+			this.description = null;
+		}
 		
 		this.addNode = function(){
 			this.nodes.push(
 			{ 
-			  name:this.node.nodeName, 
-			  code: this.node.nodeCode, 
-			  type:this.node.nodeType, 
-			  order:this.node.nodeOrder, 
+			  name:this.node.name, 
+			  code: this.node.code, 
+			  type:this.node.type, 
+			  order:this.node.order, 
 			  parentNode:this.node.parentNode, 
-			  rank:this.node.nodeRank, 
-			  weight:this.node.nodeWeight, 
-			  description:this.node.nodeDescription
+			  rank:this.node.rank, 
+			  weight:this.node.weight, 
+			  description:this.node.description
 			});
 			this.orders.add();
-			this.node={};
+			this.node.clear();
 		};
 
 		//generate node code based on input node name
 		this.updateCode = function(){
-			this.node.nodeCode = this.node.nodeName.toUpperCase().replace(/ /g, "_");
+			this.node.code = this.node.name.toUpperCase().replace(/ /g, "_");
+		};
+
+		//update possible parent nodes
+		this.updatePossibleParentNodes = function(){
+			this.possibleParentNodes = this.node.getPossibleParentNodes(this.nodes);
+			console.log(this.possibleParentNodes);
 		};
 		
 		this.addMapping = function(){
