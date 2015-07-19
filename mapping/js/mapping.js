@@ -12,6 +12,7 @@
 		this.tgCompetencies = tgCompetencies;
 		this.mappings=[];
 		this.possibleParentNodes=[];
+		this.possibleRank =[];
 
 		this.mappings.findNodeByCode = function(code){
 			var nodeInMappings; 
@@ -35,6 +36,9 @@
 			if (this.type ==="Competency") return nodes.findByType("Cluster");
 			return [];
 		};
+		this.node.getPossibleRank = function(nodes){
+			return [];
+		}
 
 		this.node.clear = function(){
 			this.name =null;
@@ -68,11 +72,15 @@
 			this.node.code = this.node.name.toUpperCase().replace(/ /g, "_");
 		};
 
-		//update possible parent nodes
+		//update possible parent nodes option
 		this.updatePossibleParentNodes = function(){
 			this.possibleParentNodes = this.node.getPossibleParentNodes(this.nodes);
-			console.log(this.possibleParentNodes);
 		};
+
+		//update possilbe rank option
+		this.updatePossibleRank = function(){
+			this.possibleRank = this.node.getPossibleRank(this.nodes);
+		}
 		
 		this.addMapping = function(){
 			var nodeInMappings = this.mappings.findNodeByCode(this.selectClientNode.code);
