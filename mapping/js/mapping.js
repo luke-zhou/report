@@ -31,14 +31,28 @@
 			return this.filter(function(value){return value.type === type});
 		};
 
+		this.nodes.findeByParent = function (parent){
+			return this.filter(function(value){return value.parentNode === parent})
+		}
+
 		this.node.getPossibleParentNodes = function(nodes){
 			if (this.type==="Cluster") return nodes.findByType("Domain");
 			if (this.type ==="Competency") return nodes.findByType("Cluster");
 			return [];
 		};
-		this.node.getPossibleRank = function(nodes){
-			return [];
+
+		var range = function(start, end){
+			var result =[];
+			for (var i = start;i<=end;i++){
+				result.push(i);
+			}
+			return result;
 		}
+
+		this.node.getPossibleRank = function(nodes){
+			var allChildNodes = nodes.findeByParent(this.parentNode);
+			return range(1, allChildNodes.length+1);
+		};
 
 		this.node.clear = function(){
 			this.name =null;
@@ -80,7 +94,7 @@
 		//update possilbe rank option
 		this.updatePossibleRank = function(){
 			this.possibleRank = this.node.getPossibleRank(this.nodes);
-		}
+		};
 		
 		this.addMapping = function(){
 			var nodeInMappings = this.mappings.findNodeByCode(this.selectClientNode.code);

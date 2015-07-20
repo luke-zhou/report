@@ -63,13 +63,10 @@
         <select class="input-select node-option" ng-model="mapping.node.parentNode" ng-change="mapping.updatePossibleRank()" ng-disabled="mapping.possibleParentNodes.length==0" ng-options="node.name for node in mapping.possibleParentNodes">
         </select>
         <label>Rank:</label>
-        <select class="input-select node-option" ng-model="mapping.node.rank" ng-disabled="mapping.parentNode==null">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
+        <select class="input-select node-option" ng-model="mapping.node.rank" ng-disabled="mapping.possibleRank.length==0" ng-options="number for number in mapping.possibleRank">
         </select>
         <label>Weight:</label>
-        <input class="input-box node-value" type="text" ng-model="mapping.node.weight" placeholder="Enter a node weight here" ng-disabled="mapping.nodeRank==null">
+        <input class="input-box node-value" type="text" ng-model="mapping.node.weight" placeholder="Enter a node weight here" ng-disabled="mapping.node.rank==null">
         </div>
         <div>
         <label>Description:</label>
