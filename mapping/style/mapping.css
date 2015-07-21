@@ -28,3 +28,7 @@
 .node-table td {
 	border: 1px solid black;
 }
+
+td.error {
+	background: red;
+}

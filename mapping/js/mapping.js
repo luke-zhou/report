@@ -13,6 +13,7 @@
 		this.mappings=[];
 		this.possibleParentNodes=[];
 		this.possibleRank =[];
+		this.validate ={};
 
 		this.mappings.findNodeByCode = function(code){
 			var nodeInMappings; 
@@ -23,22 +24,76 @@
 			return nodeInMappings;
 		};
 
-		this.orders.add = function(){
+		this.orders.increase = function(){
 			this.push(this.length+1);
 		};
+
+		this.orders.decrease = function(){
+			this.pop();
+		}
 
 		this.nodes.findByType = function(type){
 			return this.filter(function(value){return value.type === type});
 		};
 
 		this.nodes.findeByParent = function (parent){
-			return this.filter(function(value){return value.parentNode === parent})
-		}
+			return this.filter(function(value){return value.parentNode === parent;})
+		};
+
+		this.nodes.validateUnique = function(node, key){
+			if (node[key]==null) return 'error';
+			if (this.some(function(value){return value!=node&&value[key]==node[key];})) return 'error';
+			return '';
+		};
+
+		this.nodes.validateNotNull = function(node, key){
+			if (node[key]==null) return 'error';
+			return '';
+		};
+
+		this.nodes.validateRank = function(node){
+			if (node.parentNode==null) return '';
+
+			if (node.rank==null) return 'error';
+			if (this.some(function(value){return value!=node&&value.parentNode==node.parentNode&&value.rank==node.rank;})) return 'error';
+			return '';
+		};
+
+		this.nodes.validateWeight = function(node){
+			if (node.parentNode==null) return '';
+
+			if (node.weight==null) return 'error';
+			var weightSum =0;
+			this.forEach(
+				function(value){
+					if(value.parentNode===node.parentNode) weightSum+=Number(value.weight);
+				});
+			console.log(weightSum);
+			if (weightSum!=100) return 'error';
+			else return '';
+		};
 
 		this.node.getPossibleParentNodes = function(nodes){
 			if (this.type==="Cluster") return nodes.findByType("Domain");
 			if (this.type ==="Competency") return nodes.findByType("Cluster");
 			return [];
+		};
+
+		this.nodes.remove = function(node){
+			this.forEach(
+				function(value){
+					if(value.parentNode===node){
+						value.parentNode = null;
+						value.rank = null;
+						value.weight = null;
+					}
+				});
+			this.splice(this.indexOf(node), 1);
+		};
+
+		this.deleteNode = function(node){
+			this.nodes.remove(node);
+			this.orders.decrease();
 		};
 
 		var range = function(start, end){
@@ -57,7 +112,7 @@
 		this.node.clear = function(){
 			this.name =null;
 			this.code =null;
-			this.type =null;
+			this.type ="";
 			this.order =null;
 			this.parentNode = null;
 			this.rank =null;
@@ -77,7 +132,7 @@
 			  weight:this.node.weight, 
 			  description:this.node.description
 			});
-			this.orders.add();
+			this.orders.increase();
 			this.node.clear();
 		};
 

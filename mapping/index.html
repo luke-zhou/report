@@ -30,9 +30,27 @@
       <label>Nodes:</label>
       <br />
       <table class ="node-table">
-        <tr><td>Name</td><td>Code</td><td>Type</td><td>Order</td><td>Parent Node</td><td>Rank</td><td>Weight</td><td>Descirption</td><td>Action</td></tr>
+        <tr>
+          <td>Name</td>
+          <td>Code</td>
+          <td>Type</td>
+          <td>Order</td>
+          <td>Parent Node</td>
+          <td>Rank</td>
+          <td>Weight</td>
+          <td>Descirption</td>
+          <td>Action</td>
+        </tr>
         <tr ng-repeat="node in mapping.nodes">
-          <td>{{node.name}}</td><td>{{node.code}}</td><td>{{node.type}}</td><td>{{node.order}}</td><td>{{node.parentNode.name}}</td><td>{{node.rank}}</td><td>{{node.weight}}</td><td>{{node.description}}</td><td>Delete</td>
+          <td ng-class="mapping.nodes.validateUnique(node,'name')">{{node.name}}</td>
+          <td ng-class="mapping.nodes.validateUnique(node,'code')">{{node.code}}</td>
+          <td ng-class="mapping.nodes.validateNotNull(node,'type')">{{node.type}}</td>
+          <td ng-class="mapping.nodes.validateUnique(node,'order')">{{node.order}}</td>
+          <td>{{node.parentNode.name}}</td>
+          <td ng-class="mapping.nodes.validateRank(node)">{{node.rank}}</td>
+          <td ng-class="mapping.nodes.validateWeight(node)">{{node.weight}}</td>
+          <td>{{node.description}}</td>
+          <td><a href="#" ng-click="mapping.deleteNode(node)">delete</a></td>
         </tr>
       </table>
     </div>
@@ -46,7 +64,7 @@
         <div>
         <label>Type:</label>
         <select class="input-select node-option" ng-model="mapping.node.type" ng-change="mapping.updatePossibleParentNodes()">
-          <option value="">-- choose node type --</option>
+          <option value="">-- choose type --</option>
           <option value="Domain">Domain</option>
           <option value="Cluster">Cluster</option>
           <option value="Competency">Competency</option>
@@ -57,7 +75,7 @@
         </select>
         <label>Parent Node:</label>
         <select class="input-select node-option" ng-model="mapping.node.parentNode" ng-change="mapping.updatePossibleRank()" ng-disabled="mapping.possibleParentNodes.length==0" ng-options="node.name for node in mapping.possibleParentNodes">
-          <option value="">-- choose parent node --</option>
+          <option value="">-- choose parent --</option>
         </select>
         <label>Rank:</label>
         <select class="input-select node-option" ng-model="mapping.node.rank" ng-disabled="mapping.possibleRank.length==0" ng-options="number for number in mapping.possibleRank">
