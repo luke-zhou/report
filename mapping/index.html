@@ -100,14 +100,19 @@
       </table>
 	  <form ng-submit="mapping.addMapping()">
 		<label>Client Node:</label>
-		<select class="input-select node-option" ng-model="mapping.selectClientNode" ng-options="node.name for node in mapping.nodes"></select>
+		<select class="input-select node-option" ng-model="mapping.selectClientNode" ng-options="node.name for node in mapping.nodes">
+      <option value="">-- choose client node --</option>
+    </select>
 		<span>{{mapping.selectClientNode.code}}</span>
 		<input class="input-box node-value" type="text" ng-model="mapping.selectTgCompetencyWeight" placeholder="Enter a node weight here">
 		<label>Testgird Node:</label>
-		<select class="input-select node-option" ng-model="mapping.selectTgCompetency"  ng-options="node.name for node in mapping.tgCompetencies"></select>
+		<select class="input-select node-option" ng-model="mapping.selectTgCompetency"  ng-options="node.name for node in mapping.tgCompetencies">
+      <option value="">-- choose Testgrid node --</option>
+    </select>
 		<span>{{mapping.selectTgCompetency.code}}</span>
 		        <label>Rank:</label>
         <select class="input-select node-option" ng-model="mapping.selectTgCompetencyRank" >
+          <option value="">-- choose rank --</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
