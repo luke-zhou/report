@@ -22,11 +22,11 @@
 <body>
 
   <div class="root" ng-controller="mappingController as mapping">
-    <div>
+    <div >
       <label>Node Group Name:</label>
       <input class="input-box node-group-name" type="text" ng-model="mapping.nodeGroupName" placeholder="Enter a Node Group Name here">
       <hr>
-      <div>
+    <div style="margin:10px">
       <label>Nodes:</label>
       <br />
       <table class ="node-table">
@@ -35,18 +35,6 @@
           <td>{{node.name}}</td><td>{{node.code}}</td><td>{{node.type}}</td><td>{{node.order}}</td><td>{{node.parentNode.name}}</td><td>{{node.rank}}</td><td>{{node.weight}}</td><td>{{node.description}}</td><td>Delete</td>
         </tr>
       </table>
-      <ol class="unstyled">
-        <li ng-repeat="node in mapping.nodes">
-          <span>{{node.name}}</span>
-          <span>{{node.code}}</span>
-          <span>{{node.type}}</span>
-          <span>{{node.order}}</span>
-          <span>{{node.parentNode}}</span>
-          <span>{{node.rank}}</span>
-          <span>{{node.weight}}</span>
-          <span>{{node.description}}</span>
-        </li>
-      </ol>
     </div>
       <form ng-submit="mapping.addNode()">
         <div>
