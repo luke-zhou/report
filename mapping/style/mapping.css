@@ -27,8 +27,29 @@
 
 .node-table td {
 	border: 1px solid black;
+	width:100%;
 }
 
 td.error {
 	background: red;
+}
+
+.node-table-container{
+	width:70%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+}
+
+.node-table td.small {
+	width:5%;
+}
+
+.node-table td.medium {
+	width:15%;
+	word-wrap:break-word;
+}
+
+.node-table td.big {
+	word-wrap:break-word;
 }

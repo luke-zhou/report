@@ -26,31 +26,31 @@
       <label>Node Group Name:</label>
       <input class="input-box node-group-name" type="text" ng-model="mapping.nodeGroupName" placeholder="Enter a Node Group Name here">
       <hr>
-    <div style="margin:10px">
+    <div class="node-table-container">
       <label>Nodes:</label>
       <br />
       <table class ="node-table">
         <tr>
-          <td>Name</td>
-          <td>Code</td>
-          <td>Type</td>
-          <td>Order</td>
-          <td>Parent Node</td>
-          <td>Rank</td>
-          <td>Weight</td>
-          <td>Descirption</td>
-          <td>Action</td>
+          <td class="medium">Name</td>
+          <td class="medium">Code</td>
+          <td style="width:8%" class="medium">Type</td>
+          <td class="small">Order</td>
+          <td class="medium">Parent Node</td>
+          <td class="small">Rank</td>
+          <td class="small">Weight</td>
+          <td class="big">Descirption</td>
+          <td class="small">Action</td>
         </tr>
         <tr ng-repeat="node in mapping.nodes">
-          <td ng-class="mapping.nodes.validateUnique(node,'name')">{{node.name}}</td>
-          <td ng-class="mapping.nodes.validateUnique(node,'code')">{{node.code}}</td>
-          <td ng-class="mapping.nodes.validateNotNull(node,'type')">{{node.type}}</td>
-          <td ng-class="mapping.nodes.validateUnique(node,'order')">{{node.order}}</td>
-          <td>{{node.parentNode.name}}</td>
-          <td ng-class="mapping.nodes.validateRank(node)">{{node.rank}}</td>
-          <td ng-class="mapping.nodes.validateWeight(node)">{{node.weight}}</td>
-          <td>{{node.description}}</td>
-          <td><a href="#" ng-click="mapping.deleteNode(node)">delete</a></td>
+          <td class="medium" ng-class="mapping.nodes.validateUnique(node,'name')">{{node.name}}</td>
+          <td class="medium" ng-class="mapping.nodes.validateUnique(node,'code')">{{node.code}}</td>
+          <td style="width:8%" class="medium" ng-class="mapping.nodes.validateNotNull(node,'type')">{{node.type}}</td>
+          <td class="small" ng-class="mapping.nodes.validateUnique(node,'order')">{{node.order}}</td>
+          <td class="medium">{{node.parentNode.name}}</td>
+          <td class="small" ng-class="mapping.nodes.validateRank(node)">{{node.rank}}</td>
+          <td class="small" ng-class="mapping.nodes.validateWeight(node)">{{node.weight}}</td>
+          <td class="big">{{node.description}}</td>
+          <td class="small"><a href="#" ng-click="mapping.deleteNode(node)">delete</a></td>
         </tr>
       </table>
     </div>
@@ -141,7 +141,9 @@
     </div>
   </div>
 
-
+    <div contentEditable="true">
+      This text can be edited by the user.
+    </div>
   
 </body>
 </html>

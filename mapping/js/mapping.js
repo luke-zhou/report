@@ -41,13 +41,13 @@
 		};
 
 		this.nodes.validateUnique = function(node, key){
-			if (node[key]==null) return 'error';
+			if (node[key]==null||node[key]=='') return 'error';
 			if (this.some(function(value){return value!=node&&value[key]==node[key];})) return 'error';
 			return '';
 		};
 
 		this.nodes.validateNotNull = function(node, key){
-			if (node[key]==null) return 'error';
+			if (node[key]==null||node[key]=='') return 'error';
 			return '';
 		};
 
