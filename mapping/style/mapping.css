@@ -21,8 +21,21 @@
 }
 
 .mappingTable td{
+	width:100%;
+	border: 1px solid black;
+}
 
-		border: 1px solid black;
+.mappingTable td.small {
+	width:5%;
+}
+
+.mappingTable td.medium {
+	width:15%;
+	word-wrap:break-word;
+}
+
+.mappingTable td.big {
+	word-wrap:break-word;
 }
 
 .node-table td {
