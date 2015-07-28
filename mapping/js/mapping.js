@@ -24,6 +24,14 @@
 			return nodeInMappings;
 		};
 
+		this.mappings.deleteMapping = function(clientCompetency, tgCompetency){
+			clientCompetency.childNodes.splice(clientCompetency.childNodes.indexOf(tgCompetency), 1);
+			if (clientCompetency.childNodes.length==0){
+				this.splice(this.indexOf(clientCompetency),1);
+			}
+
+		};
+
 		this.orders.increase = function(){
 			this.push(this.length+1);
 		};

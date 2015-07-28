@@ -95,27 +95,30 @@
       <table class="mappingTable">
         <tr>
           <td class="medium">Client Competency</td>
-          <td class="medium">TG Competency</td>
-
-          <td class="small">Rank</td>
-          <td class="small">Weight</td>
-          <td class="small">Action</td>
-        </tr>
-        <tr ng-repeat="mapping in mapping.mappings">
-		  <td>
-			<table>
-				<tr>
-					<td>{{mapping.clientNode.name}}</td>
-				</tr>
-			</table>
-		  </td>
           <td>
-			<table>
-				<tr ng-repeat="childNode in mapping.childNodes">
-				<td>{{childNode.tgCompetency.name}}</td><td>{{childNode.weight}}</td><td>{{childNode.rank}}</td>
-				</tr>
-			</table>
-		  </td>
+            <table class="tg-competency">
+              <tr>
+                <td>TG Competency</td>
+
+                <td class="small">Weight</td>
+                <td class="small">Rank</td>
+                <td class="small">Action</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr ng-repeat="clientCompetency in mapping.mappings">
+					<td class="medium">{{clientCompetency.clientNode.name}}</td>
+          <td>
+      			<table class="tg-competency">
+      				<tr ng-repeat="childNode in clientCompetency.childNodes">
+      				<td>{{childNode.tgCompetency.name}}</td>
+              <td class="small">{{childNode.weight}}</td>
+              <td class="small">{{childNode.rank}}</td>
+              <td class="small"><a href="#" ng-click="mapping.mappings.deleteMapping(clientCompetency, childNode)">delete</a></td>
+      				</tr>
+      			</table>
+		      </td>
         </tr>
       </table>
     </div>

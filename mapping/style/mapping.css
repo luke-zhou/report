@@ -20,21 +20,25 @@
 	width:150px;
 }
 
-.mappingTable td{
+.mappingTable{
 	width:100%;
 	border: 1px solid black;
 }
 
-.mappingTable td.small {
-	width:5%;
+.tg-competency {
+	width:100%;
+	border: 1px solid black;
 }
+
 
 .mappingTable td.medium {
-	width:15%;
+	width:35%;
 	word-wrap:break-word;
+	border: 1px solid black;
 }
 
-.mappingTable td.big {
+.mappingTable td.small {
+	width:15%;
 	word-wrap:break-word;
 }
 
