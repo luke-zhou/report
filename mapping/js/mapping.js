@@ -198,8 +198,9 @@
 			this.selectTgCompetencyRank=null;
 		};
 
-		this.mappings.validateNotNull = function(childNode){
+		this.mappings.validateTgCompetency = function(childNode, clientNode){
 			if ((!childNode.tgCompetency) || childNode.tgCompetency=='') return 'error';
+			if (clientNode.childNodes.some(function(value){return value!=childNode&&value.tgCompetency==childNode.tgCompetency;})) return 'error';
 			return '';
 		};
 
@@ -216,7 +217,6 @@
 		};
 
 		this.mappings.validateRank = function(childNode, clientNode){
-			console.log(childNode.rank);
 			if ((!childNode.rank)||childNode.rank==null) return 'error';
 
 			if (clientNode.childNodes.some(function(value){return value!=childNode&&value.rank==childNode.rank;})) return 'error';

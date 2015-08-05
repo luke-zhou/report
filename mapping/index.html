@@ -112,7 +112,7 @@
           <td>
       			<table class="tg-competency">
       				<tr ng-repeat="childNode in clientCompetency.childNodes">
-      				<td ng-class="mapping.mappings.validateNotNull(childNode)">{{childNode.tgCompetency.name}}</td>
+      				<td ng-class="mapping.mappings.validateTgCompetency(childNode, clientCompetency)">{{childNode.tgCompetency.name}}</td>
               <td class="small" ng-class="mapping.mappings.validateWeight(childNode, clientCompetency)">{{childNode.weight}}</td>
               <td class="small" ng-class="mapping.mappings.validateRank(childNode, clientCompetency)">{{childNode.rank}}</td>
               <td class="small"><a href="#" ng-click="mapping.mappings.deleteMapping(clientCompetency, childNode)">delete</a></td>
