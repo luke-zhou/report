@@ -112,9 +112,9 @@
           <td>
       			<table class="tg-competency">
       				<tr ng-repeat="childNode in clientCompetency.childNodes">
-      				<td>{{childNode.tgCompetency.name}}</td>
-              <td class="small">{{childNode.weight}}</td>
-              <td class="small">{{childNode.rank}}</td>
+      				<td ng-class="mapping.mappings.validateNotNull(childNode)">{{childNode.tgCompetency.name}}</td>
+              <td class="small" ng-class="mapping.mappings.validateWeight(childNode, clientCompetency)">{{childNode.weight}}</td>
+              <td class="small" ng-class="mapping.mappings.validateRank(childNode, clientCompetency)">{{childNode.rank}}</td>
               <td class="small"><a href="#" ng-click="mapping.mappings.deleteMapping(clientCompetency, childNode)">delete</a></td>
       				</tr>
       			</table>
@@ -124,7 +124,7 @@
     </div>
 	  <form ng-submit="mapping.addMapping()">
 		<label>Client Node:</label>
-		<select class="input-select node-option" ng-model="mapping.selectClientNode" ng-options="node.name for node in mapping.nodes">
+		<select class="input-select node-option" ng-model="mapping.selectClientNode" ng-options="node.name for node in mapping.nodes" ng-change="mapping.updatePossibleTgCompetencyRank(mapping.selectClientNode)">
       <option value="">-- choose client node --</option>
     </select>
 		<span>{{mapping.selectClientNode.code}}</span><br />
@@ -134,13 +134,10 @@
       <option value="">-- choose Testgrid node --</option>
     </select>
 		<span>{{mapping.selectTgCompetency.code}}</span><br />
-		        <label>Rank:</label>
-        <select class="input-select node-option" ng-model="mapping.selectTgCompetencyRank" >
-          <option value="">-- choose rank --</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select><br />
+    <label>Rank:</label>
+    <select class="input-select node-option" ng-model="mapping.selectTgCompetencyRank" ng-disabled="mapping.selectClientNode==null" ng-options="number for number in mapping.possibleTgCompetencyRank">
+      <option value="">-- choose rank --</option>
+    </select><br />
 		<input type="submit" value="add">
 	</form>
       <h1>Hello {{mapping.nodeGroupName}}!</h1>

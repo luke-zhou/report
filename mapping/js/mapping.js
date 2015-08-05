@@ -14,6 +14,15 @@
 		this.possibleParentNodes=[];
 		this.possibleRank =[];
 		this.validate ={};
+		this.possibleTgCompetencyRank=[];
+
+
+		this.updatePossibleTgCompetencyRank = function(clientNode){
+			var node = this.mappings.findNodeByCode(clientNode.code);
+			var childNodeNumber = node==null ? 1 : node.childNodes.length+1;
+			var plusOneNumber = function(value, index){return index+1;};
+			this.possibleTgCompetencyRank = Array.apply(null, {length: childNodeNumber}).map(plusOneNumber);
+		}
 
 		this.mappings.findNodeByCode = function(code){
 			var nodeInMappings; 
@@ -182,7 +191,40 @@
 								}]
 				});
 			}
+
+			this.selectClientNode=null;
+			this.selectTgCompetencyWeight=null;
+			this.selectTgCompetency=null;
+			this.selectTgCompetencyRank=null;
 		};
+
+		this.mappings.validateNotNull = function(childNode){
+			if ((!childNode.tgCompetency) || childNode.tgCompetency=='') return 'error';
+			return '';
+		};
+
+		this.mappings.validateWeight = function(childNode, clientNode){
+			if ((!childNode.weight) || childNode.weight=='') return 'error';
+
+			var weightSum=0;
+			clientNode.childNodes.forEach(
+				function(value){
+					 weightSum+=Number(value.weight);
+				});
+			return weightSum ==100?'':'error';
+
+		};
+
+		this.mappings.validateRank = function(childNode, clientNode){
+			console.log(childNode.rank);
+			if ((!childNode.rank)||childNode.rank==null) return 'error';
+
+			if (clientNode.childNodes.some(function(value){return value!=childNode&&value.rank==childNode.rank;})) return 'error';
+			return '';
+
+		};
+
+
 	});
 	
 	var tgCompetencies =[	{name:"Builds Relationships", code:"BUILDS_RELATIONSHIPS"},
