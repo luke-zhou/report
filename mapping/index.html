@@ -17,80 +17,96 @@
   <script src="bower_components/angular-route/angular-route.js"></script>
 
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
-  <script src="js/mapping.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controller/mappingCtrl.js"></script>
+  <script src="js/controller/clientCompetencyCtrl.js"></script>
 </head>
 <body>
 
-  <div class="root" ng-controller="mappingController as mapping">
-    <div >
-      <label>Node Group Name:</label>
-      <input class="input-box node-group-name" type="text" ng-model="mapping.nodeGroupName" placeholder="Enter a Node Group Name here">
-      <hr>
-    <div class="node-table-container">
-      <label>Nodes:</label>
-      <br />
-      <table class ="node-table">
-        <tr>
-          <td class="medium">Name</td>
-          <td class="medium">Code</td>
-          <td style="width:8%" class="medium">Type</td>
-          <td class="small">Order</td>
-          <td class="medium">Parent Node</td>
-          <td class="small">Rank</td>
-          <td class="small">Weight</td>
-          <td class="big">Descirption</td>
-          <td class="small">Action</td>
-        </tr>
-        <tr ng-repeat="node in mapping.nodes">
-          <td class="medium" ng-class="mapping.nodes.validateUnique(node,'name')">{{node.name}}</td>
-          <td class="medium" ng-class="mapping.nodes.validateUnique(node,'code')">{{node.code}}</td>
-          <td style="width:8%" class="medium" ng-class="mapping.nodes.validateNotNull(node,'type')">{{node.type}}</td>
-          <td class="small" ng-class="mapping.nodes.validateUnique(node,'order')">{{node.order}}</td>
-          <td class="medium">{{node.parentNode.name}}</td>
-          <td class="small" ng-class="mapping.nodes.validateRank(node)">{{node.rank}}</td>
-          <td class="small" ng-class="mapping.nodes.validateWeight(node)">{{node.weight}}</td>
-          <td class="big">{{node.description}}</td>
-          <td class="small"><a href="#" ng-click="mapping.deleteNode(node)">delete</a></td>
-        </tr>
-      </table>
-    </div>
-      <form ng-submit="mapping.addNode()">
-        <div>
-        <label>Name:</label>
-        <input class="input-box node-value" type="text" ng-model="mapping.node.name" ng-change="mapping.updateCode()" placeholder="Enter a node name here">
-        <label>Code:</label>
-        <input class="input-box node-value" type="text" ng-model="mapping.node.code" placeholder="Enter a node code here">
+  <div class="root" ng-controller="mappingCtrl as mappingCtrl">
+
+
+      <div class="section-container"> 
+        <br />
+        <label>Organisation ID:</label>
+        <input class="input-text-box organisation-id" type="text" ng-model="mappingCtrl.organisationId" placeholder="Enter an Organisation ID here">
+        <br />
+        <br />
+        <label>Node Group Name:</label>
+        <input class="input-text-box node-group-name" type="text" ng-model="mappingCtrl.nodeGroupName" placeholder="Enter a Node Group Name here">
+        <hr>
+      </div> 
+
+
+      <div class="section-container" ng-controller="clientCompetencyCtrl as clientCompetencyCtrl"> 
+        <div class="node-table-container">
+          <label>Nodes:</label>
+          <br />
+          <table class ="node-table">
+            <tr>
+              <td class="medium">Name</td>
+              <td class="medium">Code</td>
+              <td style="width:8%" class="medium">Type</td>
+              <td class="small">Order</td>
+              <td class="medium">Parent Node</td>
+              <td class="small">Rank</td>
+              <td class="small">Weight</td>
+              <td class="big">Descirption</td>
+              <td class="small">Action</td>
+            </tr>
+            <tr ng-repeat="node in clientCompetencyCtrl.nodes">
+              <td class="medium" ng-class="clientCompetencyCtrl.nodes.validateUnique(node,'name')">{{node.name}}</td>
+              <td class="medium" ng-class="clientCompetencyCtrl.nodes.validateUnique(node,'code')">{{node.code}}</td>
+              <td style="width:8%" class="medium" ng-class="clientCompetencyCtrl.nodes.validateNotNull(node,'type')">{{node.type}}</td>
+              <td class="small" ng-class="clientCompetencyCtrl.nodes.validateUnique(node,'order')">{{node.order}}</td>
+              <td class="medium">{{node.parentNode.name}}</td>
+              <td class="small" ng-class="clientCompetencyCtrl.nodes.validateRank(node)">{{node.rank}}</td>
+              <td class="small" ng-class="clientCompetencyCtrl.nodes.validateWeight(node)">{{node.weight}}</td>
+              <td class="big">{{node.description}}</td>
+              <td class="small"><a href="#" ng-click="clientCompetencyCtrl.deleteNode(node)">delete</a></td>
+            </tr>
+          </table>
         </div>
-        <div>
-        <label>Type:</label>
-        <select class="input-select node-option" ng-model="mapping.node.type" ng-change="mapping.updatePossibleParentNodes()">
-          <option value="">-- choose type --</option>
-          <option value="Domain">Domain</option>
-          <option value="Cluster">Cluster</option>
-          <option value="Competency">Competency</option>
-        </select>
-        <label>Order:</label>
-        <select class="input-select node-option" ng-model="mapping.node.order" ng-options="number for number in mapping.orders">
-          <option value="">-- choose order --</option>
-        </select>
-        <label>Parent Node:</label>
-        <select class="input-select node-option" ng-model="mapping.node.parentNode" ng-change="mapping.updatePossibleRank()" ng-disabled="mapping.possibleParentNodes.length==0" ng-options="node.name for node in mapping.possibleParentNodes">
-          <option value="">-- choose parent --</option>
-        </select>
-        <label>Rank:</label>
-        <select class="input-select node-option" ng-model="mapping.node.rank" ng-disabled="mapping.possibleRank.length==0" ng-options="number for number in mapping.possibleRank">
-          <option value="">-- choose rank --</option>
-        </select>
-        <label>Weight:</label>
-        <input class="input-box node-value" type="text" ng-model="mapping.node.weight" placeholder="Enter a node weight here" ng-disabled="mapping.node.rank==null">
+
+        <form ng-submit="clientCompetencyCtrl.addNode()">
+          <div>
+          <label>Name:</label>
+          <input class="input-box node-value" type="text" ng-model="clientCompetencyCtrl.node.name" ng-change="clientCompetencyCtrl.updateCode()" placeholder="Enter a node name here">
+          <label>Code:</label>
+          <input class="input-box node-value" type="text" ng-model="clientCompetencyCtrl.node.code" placeholder="Enter a node code here">
+          </div>
+          <div>
+          <label>Type:</label>
+          <select class="input-select node-option" ng-model="clientCompetencyCtrl.node.type" ng-change="clientCompetencyCtrl.updatePossibleParentNodes()">
+            <option value="">-- choose type --</option>
+            <option value="Domain">Domain</option>
+            <option value="Cluster">Cluster</option>
+            <option value="Competency">Competency</option>
+          </select>
+          <label>Order:</label>
+          <select class="input-select node-option" ng-model="clientCompetencyCtrl.node.order" ng-options="number for number in clientCompetencyCtrl.orders">
+            <option value="">-- choose order --</option>
+          </select>
+          <label>Parent Node:</label>
+          <select class="input-select node-option" ng-model="clientCompetencyCtrl.node.parentNode" ng-change="clientCompetencyCtrl.updatePossibleRank()" ng-disabled="clientCompetencyCtrl.possibleParentNodes.length==0" ng-options="node.name for node in clientCompetencyCtrl.possibleParentNodes">
+            <option value="">-- choose parent --</option>
+          </select>
+          <label>Rank:</label>
+          <select class="input-select node-option" ng-model="clientCompetencyCtrl.node.rank" ng-disabled="clientCompetencyCtrl.possibleRank.length==0" ng-options="number for number in clientCompetencyCtrl.possibleRank">
+            <option value="">-- choose rank --</option>
+          </select>
+          <label>Weight:</label>
+          <input class="input-box node-value" type="text" ng-model="clientCompetencyCtrl.node.weight" placeholder="Enter a node weight here" ng-disabled="clientCompetencyCtrl.node.rank==null">
+          </div>
+          <div>
+          <label>Description:</label>
+            <textarea rows="4" cols="50" ng-model="clientCompetencyCtrl.node.description" placeholder="Enter a node description here"></textarea>
         </div>
-        <div>
-        <label>Description:</label>
-          <textarea rows="4" cols="50" ng-model="mapping.node.description" placeholder="Enter a node description here"></textarea>
+          <input type="submit" value="add">
+        </form>
+        <hr>
       </div>
-        <input type="submit" value="add">
-      </form>
-      <hr>
+
     <div class="node-table-container">
       <table class="mappingTable">
         <tr>
@@ -107,40 +123,40 @@
             </table>
           </td>
         </tr>
-        <tr ng-repeat="clientCompetency in mapping.mappings">
+        <tr ng-repeat="clientCompetency in mappingCtrl.mappings">
 					<td class="medium">{{clientCompetency.clientNode.name}}</td>
           <td>
       			<table class="tg-competency">
       				<tr ng-repeat="childNode in clientCompetency.childNodes">
-      				<td ng-class="mapping.mappings.validateTgCompetency(childNode, clientCompetency)">{{childNode.tgCompetency.name}}</td>
-              <td class="small" ng-class="mapping.mappings.validateWeight(childNode, clientCompetency)">{{childNode.weight}}</td>
-              <td class="small" ng-class="mapping.mappings.validateRank(childNode, clientCompetency)">{{childNode.rank}}</td>
-              <td class="small"><a href="#" ng-click="mapping.mappings.deleteMapping(clientCompetency, childNode)">delete</a></td>
+      				<td ng-class="mappingCtrl.mappings.validateTgCompetency(childNode, clientCompetency)">{{childNode.tgCompetency.name}}</td>
+              <td class="small" ng-class="mappingCtrl.mappings.validateWeight(childNode, clientCompetency)">{{childNode.weight}}</td>
+              <td class="small" ng-class="mappingCtrl.mappings.validateRank(childNode, clientCompetency)">{{childNode.rank}}</td>
+              <td class="small"><a href="#" ng-click="mappingCtrl.mappings.deleteMapping(clientCompetency, childNode)">delete</a></td>
       				</tr>
       			</table>
 		      </td>
         </tr>
       </table>
     </div>
-	  <form ng-submit="mapping.addMapping()">
+	  <form ng-submit="mappingCtrl.addMapping()">
 		<label>Client Node:</label>
-		<select class="input-select node-option" ng-model="mapping.selectClientNode" ng-options="node.name for node in mapping.nodes" ng-change="mapping.updatePossibleTgCompetencyRank(mapping.selectClientNode)">
+		<select class="input-select node-option" ng-model="mappingCtrl.selectClientNode" ng-options="node.name for node in mappingCtrl.nodes" ng-change="mappingCtrl.updatePossibleTgCompetencyRank(mappingCtrl.selectClientNode)">
       <option value="">-- choose client node --</option>
     </select>
-		<span>{{mapping.selectClientNode.code}}</span><br />
-		<input class="input-box node-value" type="text" ng-model="mapping.selectTgCompetencyWeight" placeholder="Enter a node weight here"><br />
+		<span>{{mappingCtrl.selectClientNode.code}}</span><br />
+		<input class="input-box node-value" type="text" ng-model="mappingCtrl.selectTgCompetencyWeight" placeholder="Enter a node weight here"><br />
 		<label>Testgird Node:</label>
-		<select class="input-select node-option" ng-model="mapping.selectTgCompetency"  ng-options="node.name for node in mapping.tgCompetencies">
+		<select class="input-select node-option" ng-model="mappingCtrl.selectTgCompetency"  ng-options="node.name for node in mappingCtrl.tgCompetencies">
       <option value="">-- choose Testgrid node --</option>
     </select>
-		<span>{{mapping.selectTgCompetency.code}}</span><br />
+		<span>{{mappingCtrl.selectTgCompetency.code}}</span><br />
     <label>Rank:</label>
-    <select class="input-select node-option" ng-model="mapping.selectTgCompetencyRank" ng-disabled="mapping.selectClientNode==null" ng-options="number for number in mapping.possibleTgCompetencyRank">
+    <select class="input-select node-option" ng-model="mappingCtrl.selectTgCompetencyRank" ng-disabled="mappingCtrl.selectClientNode==null" ng-options="number for number in mappingCtrl.possibleTgCompetencyRank">
       <option value="">-- choose rank --</option>
     </select><br />
 		<input type="submit" value="add">
 	</form>
-      <h1>Hello {{mapping.nodeGroupName}}!</h1>
+      <h1>Hello {{mappingCtrl.nodeGroupName}}!</h1>
     </div>
   </div>
 
