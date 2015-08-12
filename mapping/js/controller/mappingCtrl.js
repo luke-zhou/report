@@ -5,9 +5,6 @@
 	var app = angular.module('mapping');
 
 	app.controller('mappingCtrl', function(){
-		this.nodeGroupName='';
-		this.organisationId='';
-
 
 		this.tgCompetencies = tgCompetencies;
 		this.mappings=[];

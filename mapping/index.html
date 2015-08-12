@@ -20,20 +20,21 @@
   <script src="js/app.js"></script>
   <script src="js/controller/mappingCtrl.js"></script>
   <script src="js/controller/clientCompetencyCtrl.js"></script>
+  <script src="js/controller/nodeGroupCtrl.js"></script>
 </head>
 <body>
 
   <div class="root" ng-controller="mappingCtrl as mappingCtrl">
 
 
-      <div class="section-container"> 
+      <div class="section-container" ng-controller="nodeGroupCtrl as nodeGroupCtrl"> 
         <br />
         <label>Organisation ID:</label>
-        <input class="input-text-box organisation-id" type="text" ng-model="mappingCtrl.organisationId" placeholder="Enter an Organisation ID here">
+        <input class="input-text-box organisation-id" type="text" ng-model="nodeGroupCtrl.organisationId" placeholder="Enter an Organisation ID here">
         <br />
         <br />
         <label>Node Group Name:</label>
-        <input class="input-text-box node-group-name" type="text" ng-model="mappingCtrl.nodeGroupName" placeholder="Enter a Node Group Name here">
+        <input class="input-text-box node-group-name" type="text" ng-model="nodeGroupCtrl.nodeGroupName" placeholder="Enter a Node Group Name here">
         <hr>
       </div> 
 
